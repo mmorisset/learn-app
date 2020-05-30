@@ -1,0 +1,40 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "fullName": "Kaleigh Ritchie",
+      "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+      "classroomId": 1,
+      "createdAt": "2020-05-29T18:34:16.332Z",
+      "updatedAt": "2020-05-29T18:34:16.336Z",
+      "exerciseGrades": []
+    },
+    {
+      "id": 2,
+      "fullName": "Dave Muller",
+      "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+      "classroomId": 1,
+      "createdAt": "2020-05-29T18:34:16.340Z",
+      "updatedAt": "2020-05-29T18:34:16.343Z",
+      "exerciseGrades": []
+    },
+    {
+      "id": 3,
+      "fullName": "Shayne Mayer",
+      "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+      "classroomId": 1,
+      "createdAt": "2020-05-29T18:34:16.332Z",
+      "updatedAt": "2020-05-29T18:34:16.336Z",
+      "exerciseGrades": []
+    },
+    {
+      "id": 4,
+      "fullName": "Margie Frami",
+      "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+      "classroomId": 1,
+      "createdAt": "2020-05-29T18:34:16.340Z",
+      "updatedAt": "2020-05-29T18:34:16.343Z",
+      "exerciseGrades": []
+    }
+  ]
+}

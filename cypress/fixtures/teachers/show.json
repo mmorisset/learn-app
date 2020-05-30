@@ -1,0 +1,40 @@
+{
+  "teacher": {
+    "id": 12,
+    "firstName": "Joshuah",
+    "lastName": "Collier",
+    "email": "user@learn.com",
+    "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+    "createdAt": "2020-05-18T22:31:56.414Z",
+    "updatedAt": "2020-05-18T22:31:56.854Z",
+    "classrooms": [
+      {
+        "id": 1,
+        "name": "CP-1",
+        "code": "878585",
+        "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+        "teacherId": 1,
+        "createdAt": "2020-05-27T16:24:54.578Z",
+        "updatedAt": "2020-05-27T16:24:54.581Z"
+      },
+      {
+        "id": 2,
+        "name": "CM2-4",
+        "code": "625217",
+        "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+        "teacherId": 1,
+        "createdAt": "2020-05-27T16:24:54.585Z",
+        "updatedAt": "2020-05-27T16:24:54.589Z"
+      },
+      {
+        "id": 3,
+        "name": "CM1-2",
+        "code": "625787",
+        "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+        "teacherId": 1,
+        "createdAt": "2020-05-27T16:24:54.585Z",
+        "updatedAt": "2020-05-27T16:24:54.589Z"
+      }
+    ]
+  }
+}

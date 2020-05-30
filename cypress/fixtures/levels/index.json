@@ -1,0 +1,155 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "Easy",
+      "index": 1,
+      "color": "#0eff00",
+      "createdAt": "2020-05-29T20:31:30.340Z",
+      "updatedAt": "2020-05-29T20:31:30.344Z",
+      "exercises": [
+        {
+          "id": 1,
+          "index": 28462,
+          "word": "Soap",
+          "syllablePropositions": [
+            "sa",  "vings", "au",
+            "xi",  "li",    "a",
+            "ry",  "qa",    "ta",
+            "ri",  "key",   "bo",
+            "ard", "so",    "ap"
+          ],
+          "levelId": 1,
+          "createdAt": "2020-05-29T20:42:29.039Z",
+          "updatedAt": "2020-05-29T20:42:29.039Z"
+        },
+        {
+          "id": 1,
+          "index": 98939,
+          "word": "Metal",
+          "syllablePropositions": [
+            "key", "bo",   "ard",
+            "se",  "xy",   "na",
+            "vi",  "gate", "cir",
+            "cu",  "it",   "me",
+            "tal"
+          ],
+          "levelId": 1,
+          "createdAt": "2020-05-29T20:45:56.695Z",
+          "updatedAt": "2020-05-29T20:45:56.695Z"
+        },
+        {
+          "id": 1,
+          "index": 49188,
+          "word": "Granite",
+          "syllablePropositions": [
+            "el",    "con",
+            "cre",   "te",
+            "money", "so",
+            "lid",   "gra",
+            "nite"
+          ],
+          "levelId": 1,
+          "createdAt": "2020-05-29T20:48:14.401Z",
+          "updatedAt": "2020-05-29T20:48:14.401Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Medium",
+      "index": 2,
+      "color": "#ff6b00",
+      "createdAt": "2020-05-29T20:31:30.348Z",
+      "updatedAt": "2020-05-29T20:31:30.349Z",
+      "exercises": [
+        {
+          "id": 2,
+          "index": 1,
+          "word": "magenta",
+          "syllablePropositions": [
+            "in",    "ter",  "me",
+            "di",    "a",    "te",
+            "group", "ware", "ber",
+            "kshi",  "re",   "web",
+            "magen", "ta"
+          ],
+          "levelId": 2,
+          "createdAt": "2020-05-29T20:37:23.840Z",
+          "updatedAt": "2020-05-29T20:37:23.840Z"
+        },
+        {
+          "id": 3,
+          "index": 54873,
+          "word": "Dynamic",
+          "syllablePropositions": [
+            "com",  "ple",  "xi",
+            "ty",   "self", "con",
+            "sul",  "tant", "ob",
+            "ject", "dy",   "na",
+            "mic"
+          ],
+          "levelId": 2,
+          "createdAt": "2020-05-29T20:39:28.453Z",
+          "updatedAt": "2020-05-29T20:39:28.453Z"
+        },
+        {
+          "id": 1,
+          "index": 63784,
+          "word": "Research",
+          "syllablePropositions": [
+            "re",   "du",
+            "ced",  "card",
+            "con",  "sul",
+            "tant", "de",
+            "vol",  "ved",
+            "re",   "search"
+          ],
+          "levelId": 1,
+          "createdAt": "2020-05-29T20:43:42.463Z",
+          "updatedAt": "2020-05-29T20:43:42.463Z"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Hard",
+      "index": 3,
+      "color": "#ff002e",
+      "createdAt": "2020-05-29T20:31:30.348Z",
+      "updatedAt": "2020-05-29T20:31:30.349Z",
+      "exercises": [
+        {
+          "id": 1,
+          "index": 1,
+          "word": "orchestration",
+          "syllablePropositions": [
+            "cal",  "cu",   "late",
+            "hat",  "cen",  "tral",
+            "ge",   "ne",   "ric",
+            "or",   "ches", "tra",
+            "tion"
+          ],
+          "levelId": 3,
+          "createdAt": "2020-05-29T20:31:29.568Z",
+          "updatedAt": "2020-05-29T20:31:29.568Z"
+        },
+        {
+          "id": 1,
+          "index": 15139,
+          "word": "Marketing",
+          "syllablePropositions": [
+            "prog", "ram",  "ge",
+            "ne",   "rate", "ver",
+            "sa",   "tile", "plas",
+            "tic",  "mar",  "ke",
+            "ting"
+          ],
+          "levelId": 1,
+          "createdAt": "2020-05-29T20:47:07.587Z",
+          "updatedAt": "2020-05-29T20:47:07.587Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "student": {
+    "id": 1,
+    "fullName": "Kaleigh Ritchie",
+    "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+    "classroomId": 1,
+    "createdAt": "2020-05-29T18:34:16.332Z",
+    "updatedAt": "2020-05-29T18:34:16.336Z",
+    "exerciseGrades": []
+  }
+}

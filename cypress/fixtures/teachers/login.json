@@ -1,0 +1,12 @@
+{
+  "teacher": {
+    "id": 12,
+    "firstName": "Joshuah",
+    "lastName": "Collier",
+    "email": "user@learn.com",
+    "avatarUrl": "http://fakeimg.us-east-1.elasticbeanstalk.com/128/",
+    "createdAt": "2020-05-18T22:31:56.414Z",
+    "updatedAt": "2020-05-18T22:31:56.854Z"
+  },
+  "token": "kjhghjfndsfsbdhfbhbfdhbsdfhsbdfhbsdfhbqsjhbfzhbfzhbfzbfhzebfhzbefhb"
+}

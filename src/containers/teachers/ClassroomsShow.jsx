@@ -203,6 +203,7 @@ class ClassroomsShow extends Component {
           return (
             <OverlayTrigger
               placement='right'
+              onEnter={ () => { responsiveVoice.speak(exercise.word) }}
               overlay={
                 <Tooltip id={`exercise-${exercise.id}-tooltip`}>
                   {exercise.word}
@@ -267,8 +268,6 @@ class ClassroomsShow extends Component {
             </InputGroup.Append>
           </InputGroup>
         </div>
-
-
 
         <StyledTable id="students-table" className="table-responsive-md mt-5">
           <thead>

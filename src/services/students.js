@@ -1,12 +1,14 @@
+import * as utils from './utils';
+
 function add(classroomId, names) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: utils.headers(),
     body: JSON.stringify({ names })
   };
 
   return fetch(`${process.env.LEARN_API_HOST}/classrooms/${classroomId}/students`, requestOptions)
-    .then(handleResponse)
+    .then(utils.handleResponse)
     .then(json => {
       return json.students;
     });
@@ -15,11 +17,11 @@ function add(classroomId, names) {
 function index(classroomId) {
   const requestOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    headers: utils.headers()
   };
 
   return fetch(`${process.env.LEARN_API_HOST}/classrooms/${classroomId}/students`, requestOptions)
-    .then(handleResponse)
+    .then(utils.handleResponse)
     .then(json => {
       return json.students;
     });
@@ -28,32 +30,14 @@ function index(classroomId) {
 function destroy(classroomId, studentId) {
   const requestOptions = {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
+    headers: utils.headers()
   };
 
   return fetch(`${process.env.LEARN_API_HOST}/classrooms/${classroomId}/students/${studentId}`, requestOptions)
-    .then(handleResponse)
+    .then(utils.handleResponse)
     .then(json => {
       return json.student;
     });
-}
-
-function handleResponse(response) {
-  return response.text().then(text => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout();
-        location.reload(true);
-      }
-
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-
-    return data;
-  });
 }
 
 export {

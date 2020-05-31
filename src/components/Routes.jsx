@@ -36,7 +36,6 @@ class Routes extends Component {
             render={(props) => <ClassroomsShow {...props}
             loggedTeacher={ this.props.loggedTeacher } />}
           />
-        />
         </PrivateRoute>
       </Switch>
     );

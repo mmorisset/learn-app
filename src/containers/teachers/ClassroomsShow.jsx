@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Row, Col, Image, Button, Table, InputGroup, FormControl} from 'react-bootstrap';
+import { Row, Col, Image, Button, Table, InputGroup, FormControl, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import styled from 'styled-components';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
 import * as classroomsService from 'services/classrooms';
 import * as studentsService from 'services/students';
+import * as levelsService from 'services/levels';
 
 import { ClassroomCard, AddClassroomCard } from 'components/ClassroomIndexCard';
 import AddStudentsModal from 'components/AddStudentsModal';
@@ -27,6 +28,39 @@ const CodeFormControl = styled(FormControl)`
 const DeleteStudentButton = styled(Button)`
   margin-top: 5px;
 `;
+
+const StyledTable = styled(Table)`
+  table-layout: auto;
+  border-collapse: collapse;
+  width: 100%;
+  &&& {
+    thead th {
+      background-color: #007bff;
+      color: white;
+      font-weight: 500;
+    }
+    tbody td {
+      padding: 2px;
+    }
+    tbody th {
+      height: 50px;
+      &.not-tackled-yet {
+        background-color: #d4d4d4;
+      }
+      &.needs-help {
+        background-color: #ef4545;
+      }
+      &.still-learning {
+        background-color: #efb345;
+      }
+      &.doing-great{
+        background-color: #45ef5a;
+      }
+    }
+    .absorbing-column {
+      width: 50%;
+    }
+`
 
 class ClassroomsShow extends Component {
 
@@ -85,11 +119,11 @@ class ClassroomsShow extends Component {
   }
 
   retrieveLevels() {
-    // levelsServices.index().then(levels => {
-    //   this.setState({
-    //     levels: levels,
-    //   });
-    // })
+    levelsService.index().then(levels => {
+      this.setState({
+        levels: levels,
+      });
+    })
   }
 
   handleAddStudentsModalClose() {
@@ -147,39 +181,67 @@ class ClassroomsShow extends Component {
   }
 
   render() {
-    const { classroom, students, addStudentsModal, classroomCodeCopied, studentToDeleteId, studentToDeleteFullName, deleteStudentConfirmationModal} = this.state;
+    const { classroom, students, levels, addStudentsModal, classroomCodeCopied, studentToDeleteId, studentToDeleteFullName, deleteStudentConfirmationModal} = this.state;
 
-    const studentsElements = students.map((student, index) => (
-      <tr>
-        <td id={`student-${student.id}`}>
-          <StudentAvatar className="d-inline mr-2" src={student.avatarUrl} roundedCircle />
-          <p className="d-inline align-middle">{student.fullName}</p>
-        </td>
-        <td>
-          <th>
-            toto
-          </th>
-          <th>
-            toto
-          </th>
-          <th>
-            toto
-          </th>
-          <th>
-            toto
-          </th>
-        </td>
-        <td>
-          <DeleteStudentButton
-            data-student-to-delete-id={student.id}
-            data-student-to-delete-fullname={student.fullName}
-            className="action-delete-student"
-            variant="outline-secondary"
-            onClick={this.handleDeleteStudentButtonClick}>
-            <FaRegTrashAlt />
-          </DeleteStudentButton>
-        </td>
-      </tr>
+    const studentsElements = students.map((student, index) => {
+      const studentGrades = levels.map((level, index) => {
+        const levelStudentGrades = level.exercises.map((exercise, index) => {
+          let className = 'not-tackled-yet';
+          let exerciseGrade = student.exerciseGrades.filter(exerciseGrade =>
+            exerciseGrade.exerciseId === exercise.id
+          )
+          if (exerciseGrade.length !== 0) {
+            const grade = exerciseGrade[0].grade
+            if (grade <= 4) {
+              className = 'needs-help';
+            } else if (grade <= 7) {
+              className = 'still-learning';
+            } else {
+              className = 'doing-great';
+            }
+          }
+          return (
+            <OverlayTrigger
+              placement='right'
+              overlay={
+                <Tooltip id={`exercise-${exercise.id}-tooltip`}>
+                  {exercise.word}
+                </Tooltip>
+              }
+            >
+              <th className={className}></th>
+            </OverlayTrigger>
+          );
+        })
+        return (
+          <td>
+            {levelStudentGrades}
+          </td>
+        )
+      })
+      return (
+        <tr>
+          <td id={`student-${student.id}`}>
+            <StudentAvatar className="d-inline mr-2" src={student.avatarUrl} roundedCircle />
+            <p className="d-inline align-middle">{student.fullName}</p>
+          </td>
+          {studentGrades}
+          <td>
+            <DeleteStudentButton
+              data-student-to-delete-id={student.id}
+              data-student-to-delete-fullname={student.fullName}
+              className="action-delete-student"
+              variant="outline-secondary"
+              onClick={this.handleDeleteStudentButtonClick}>
+              <FaRegTrashAlt />
+            </DeleteStudentButton>
+          </td>
+        </tr>
+      );
+    });
+
+    const levelsElements = levels.map((level, index) => (
+      <th>{level.name}</th>
     ));
 
     const classroomCodeCopyButton = classroomCodeCopied ?
@@ -208,21 +270,24 @@ class ClassroomsShow extends Component {
 
 
 
-        <Table className="mt-5" striped bordered hover>
+        <StyledTable id="students-table" className="table-responsive-md mt-5">
           <thead>
             <tr>
-              <th>Students</th>
-              <th>Exercises</th>
-              <th>Actions</th>
+              <th className="absorbing-column">Students</th>
+              {levelsElements}
+              <th className="absorbing-column">Actions</th>
             </tr>
           </thead>
           <tbody>
             {studentsElements}
           </tbody>
-        </Table>
+        </StyledTable>
 
         <div className="d-flex justify-content-center mt-3">
-          <Button className="action-add-students" variant="outline-primary" onClick={this.handleAddStudentsButtonClick}>
+          <Button
+            className="action-add-students"
+            variant="outline-primary"
+            onClick={this.handleAddStudentsButtonClick}>
             Add students
           </Button>
         </div>

@@ -7,7 +7,56 @@
       "classroomId": 1,
       "createdAt": "2020-05-29T18:34:16.332Z",
       "updatedAt": "2020-05-29T18:34:16.336Z",
-      "exerciseGrades": []
+      "exerciseGrades": [
+        {
+          "id": 1,
+          "grade": 2,
+          "exerciseId": 1,
+          "studentId": 1,
+          "createdAt": "2020-05-30T22:13:45.450Z",
+          "updatedAt": "2020-05-30T22:13:45.450Z"
+        },
+        {
+          "id": 2,
+          "grade": 8,
+          "exerciseId": 2,
+          "studentId": 1,
+          "createdAt": "2020-05-30T22:13:45.450Z",
+          "updatedAt": "2020-05-30T22:13:45.450Z"
+        },
+        {
+          "id": 3,
+          "grade": 5,
+          "exerciseId": 3,
+          "studentId": 1,
+          "createdAt": "2020-05-30T22:13:45.450Z",
+          "updatedAt": "2020-05-30T22:13:45.450Z"
+        },
+        {
+          "id": 4,
+          "grade": 7,
+          "exerciseId": 4,
+          "studentId": 1,
+          "createdAt": "2020-05-30T22:13:45.450Z",
+          "updatedAt": "2020-05-30T22:13:45.450Z"
+        },
+        {
+          "id": 5,
+          "grade": 2,
+          "exerciseId": 5,
+          "studentId": 1,
+          "createdAt": "2020-05-30T22:13:45.450Z",
+          "updatedAt": "2020-05-30T22:13:45.450Z"
+        },
+        {
+          "id": 6,
+          "grade": 10,
+          "exerciseId": 6,
+          "studentId": 1,
+          "createdAt": "2020-05-30T22:13:45.450Z",
+          "updatedAt": "2020-05-30T22:13:45.450Z"
+        }
+      ]
     },
     {
       "id": 2,

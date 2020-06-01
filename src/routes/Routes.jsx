@@ -9,7 +9,7 @@ import ClassroomsShow from 'src/containers/teachers/ClassroomsShow';
 import ClassroomsLogin from 'src/containers/students/ClassroomsLogin';
 
 
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from 'src/routes/PrivateRoute';
 
 class Routes extends Component {
   render() {

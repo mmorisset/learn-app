@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import * as teachersService from 'services/teachers'
 
-class TeachersLogin extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -91,4 +91,4 @@ class TeachersLogin extends Component {
   }
 }
 
-export default TeachersLogin;
+export default Login;

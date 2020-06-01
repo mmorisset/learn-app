@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from 'src/containers/Home';
 import Login from 'src/containers/Login';
-import TeachersLogin from 'src/containers/teachers/TeachersLogin';
-import TeachersHome from 'src/containers/teachers/TeachersHome';
-import ClassroomsShow from 'src/containers/teachers/ClassroomsShow';
-import ClassroomsLogin from 'src/containers/students/ClassroomsLogin';
+import TeachersLogin from 'src/containers/teachers/TeacherLogin';
+import TeachersHome from 'src/containers/teachers/TeacherHome';
+import ClassroomsShow from 'src/containers/teachers/ClassroomShow';
+import ClassroomsLogin from 'src/containers/students/ClassroomLogin';
 
 
 import PrivateRoute from 'src/routes/PrivateRoute';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-import UserTypeCard from 'components/UserTypeCard';
+import UserTypeCard from 'components/login/UserTypeCard';
 
 class Login extends Component {
 

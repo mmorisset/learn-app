@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import * as teachersService from 'services/teachers';
-import { ClassroomCard, AddClassroomCard } from 'components/ClassroomIndexCard';
-import AddClassroomModal from 'components/AddClassroomModal';
+import { ClassroomCard, AddClassroomCard } from 'components/teachers/ClassroomIndexCard';
+import AddClassroomModal from 'components/teachers/AddClassroomModal';
 
-class TeacherHome extends Component {
+class TeachersHome extends Component {
 
   constructor(props) {
     super(props);
@@ -88,5 +88,5 @@ class TeacherHome extends Component {
   }
 }
 
-export default TeacherHome;
+export default TeachersHome;
 

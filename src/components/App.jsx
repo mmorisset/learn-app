@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import styled from 'styled-components';
 
 import Routes from 'src/routes/Routes';
-import NavigationBar from 'src/components/NavigationBar';
+import NavigationBar from 'src/components/navigation-bar/NavigationBar';
 
 const StyledContainer = styled(Container)`
   padding-top: 40px;

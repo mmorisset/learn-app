@@ -8,9 +8,9 @@ import * as classroomsService from 'services/classrooms';
 import * as studentsService from 'services/students';
 import * as levelsService from 'services/levels';
 
-import { ClassroomCard, AddClassroomCard } from 'components/ClassroomIndexCard';
-import AddStudentsModal from 'components/AddStudentsModal';
-import DeleteStudentConfirmationModal from 'components/DeleteStudentConfirmationModal';
+import { ClassroomCard, AddClassroomCard } from 'components/teachers/ClassroomIndexCard';
+import AddStudentsModal from 'components/teachers/AddStudentsModal';
+import DeleteStudentConfirmationModal from 'components/teachers/DeleteStudentConfirmationModal';
 
 
 const ClassroomAvatar = styled(Image)`
@@ -62,7 +62,7 @@ const StyledTable = styled(Table)`
     }
 `
 
-class ClassroomsShow extends Component {
+class ClassroomShow extends Component {
 
   constructor(props) {
     super(props);
@@ -311,5 +311,5 @@ class ClassroomsShow extends Component {
   }
 }
 
-export default ClassroomsShow;
+export default ClassroomShow;
 

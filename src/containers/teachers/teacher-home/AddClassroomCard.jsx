@@ -7,11 +7,11 @@ const StyledDiv = styled.div`
   border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
-  background: none!important;
-  padding: 0!important;
-  font-family: arial, sans-serif;
-  color: #069;
-  text-decoration: underline;
+  color: #007bff;
+  &:hover {
+    text-decoration: underline;
+    color: #069;
+  }
   cursor: pointer;
   height: 200px;
 `;

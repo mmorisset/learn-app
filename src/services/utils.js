@@ -1,11 +1,15 @@
+function logout() {
+  localStorage.removeItem('teacher');
+}
+
 function handleResponse(response) {
-  return response.text().then(text => {
+  return response.text().then((text) => {
     const data = text && JSON.parse(text);
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         logout();
-        location.reload(true);
+        window.location.reload(true);
       }
 
       const error = (data && data.message) || response.statusText;
@@ -17,20 +21,20 @@ function handleResponse(response) {
 }
 
 function authHeader() {
-  let teacher = JSON.parse(localStorage.getItem('teacher'));
+  const teacher = JSON.parse(localStorage.getItem('teacher'));
   if (teacher && teacher.token) {
-      return { 'Authorization': 'Bearer ' + teacher.token };
-  } else {
-      return {};
+    return { Authorization: `Bearer ${teacher.token}` };
   }
+  return {};
 }
 
 function headers() {
-  return { 'Content-Type': 'application/json', ...authHeader() }
+  return { 'Content-Type': 'application/json', ...authHeader() };
 }
 
 export {
   handleResponse,
   authHeader,
-  headers
-}
+  headers,
+  logout,
+};

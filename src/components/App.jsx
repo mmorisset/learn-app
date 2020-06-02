@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import styled from 'styled-components';
 
 import Routes from 'src/routes/Routes';
-import NavigationBar from 'src/components/navigation-bar/NavigationBar';
+import NavigationBar from 'src/containers/layout/navigation-bar/NavigationBar';
 
 const StyledContainer = styled(Container)`
   padding-top: 40px;
@@ -12,46 +12,40 @@ const StyledContainer = styled(Container)`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleLoggedTeacherChange = this.handleLoggedTeacherChange.bind(this);
-    this.handleTokenChange = this.handleTokenChange.bind(this);
+
     const loggedTeacherInfo = JSON.parse(localStorage.getItem('teacher'));
     if (loggedTeacherInfo) {
+      const { teacher } = loggedTeacherInfo;
       this.state = {
-        loggedTeacher: loggedTeacherInfo.teacher,
-        token: loggedTeacherInfo.token
+        loggedTeacher: teacher,
       };
     } else {
       this.state = {
         loggedTeacher: undefined,
-        token: ''
       };
     }
+
+    this.handleLoggedTeacherChange = this.handleLoggedTeacherChange.bind(this);
   }
 
 
   handleLoggedTeacherChange(loggedTeacher) {
-    this.setState({ loggedTeacher: loggedTeacher });
-  }
-
-  handleTokenChange(token) {
-    this.setState({ token: token });
+    this.setState({ loggedTeacher });
   }
 
   render() {
-    const loggedTeacher = this.state.loggedTeacher;
+    const { loggedTeacher } = this.state;
     return (
       <div>
         <NavigationBar
-          onLoggedTeacherChange={ this.handleLoggedTeacherChange }
-          onTokenChange={ this.handleTokenChange }
-          loggedTeacher={ loggedTeacher }
+          handleLoggedTeacherChange={this.handleLoggedTeacherChange}
+          loggedTeacher={loggedTeacher}
         />
         <StyledContainer className="fluid">
           <Routes
-            onLoggedTeacherChange={ this.handleLoggedTeacherChange }
-            onTokenChange={ this.handleTokenChange }
-            loggedTeacher={ loggedTeacher }
-            />
+            handleLoggedTeacherChange={this.handleLoggedTeacherChange}
+            loggedTeacher={loggedTeacher}
+          />
         </StyledContainer>
       </div>
     );

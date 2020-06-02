@@ -24,9 +24,6 @@ const LoginLink = styled(CollapsedNavLink)`
 `;
 
 class NavBarUnloggedActions extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>

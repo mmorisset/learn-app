@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import * as teachersService from 'services/teachers';
-import { ClassroomCard, AddClassroomCard } from 'components/teachers/ClassroomIndexCard';
-import AddClassroomModal from 'components/teachers/AddClassroomModal';
+import AddClassroomCard from './AddClassroomCard';
+import ClassroomCard from './ClassroomCard';
+
+import AddClassroomModal from './AddClassroomModal';
 
 class TeachersHome extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       teacher: {
-        firstName: ''
+        firstName: '',
       },
       classrooms: [],
       addClassroomModal: {
-        show: false
-      }
+        show: false,
+      },
     };
 
     this.handleAddClassroomClick = this.handleAddClassroomClick.bind(this);
@@ -25,45 +26,46 @@ class TeachersHome extends Component {
   }
 
   componentDidMount() {
-    teachersService.profile().then(teacher => {
+    teachersService.profile().then((teacher) => {
       this.setState({
-        teacher: teacher,
-        classrooms: teacher.classrooms
+        teacher,
+        classrooms: teacher.classrooms,
       });
-    })
+    });
   }
 
   handleAddClassroomClick() {
     this.setState({
       addClassroomModal: {
-        show: true
-      }
-    })
+        show: true,
+      },
+    });
   }
 
   handleAddClassroomModalClose() {
     this.setState({
       addClassroomModal: {
-        show: false
-      }
-    })
+        show: false,
+      },
+    });
   }
 
   handleClassroomCreate(classroom) {
+    const { classrooms } = this.state;
     this.setState({
-      classrooms: [classroom, ...this.state.classrooms],
+      classrooms: [classroom, ...classrooms],
       addClassroomModal: {
-        show: false
-      }
-    })
+        show: false,
+      },
+    });
   }
 
   render() {
-    const { teacher, classrooms, addClassroomModal} = this.state;
+    const { teacher, classrooms, addClassroomModal } = this.state;
 
-    const classroomElements = classrooms.map((classroom, index) => (
-      <Col sm={{ span: 6}} md={{ span: 3}}>
-        <ClassroomCard classroom={classroom} ></ClassroomCard>
+    const classroomElements = classrooms.map((classroom) => (
+      <Col sm={{ span: 6 }} md={{ span: 3 }}>
+        <ClassroomCard classroom={classroom} />
       </Col>
     ));
 
@@ -73,8 +75,8 @@ class TeachersHome extends Component {
         <h2 id="teacher-firstname" className="mb-4">{`Hello ${teacher.firstName} !`}</h2>
         <h4>My Classrooms:</h4>
         <Row>
-          <Col sm={{ span: 6}} md={{ span: 3}}>
-            <AddClassroomCard handleClick={this.handleAddClassroomClick}/>
+          <Col sm={{ span: 6 }} md={{ span: 3 }}>
+            <AddClassroomCard handleClick={this.handleAddClassroomClick} />
           </Col>
           {classroomElements}
         </Row>
@@ -89,4 +91,3 @@ class TeachersHome extends Component {
 }
 
 export default TeachersHome;
-

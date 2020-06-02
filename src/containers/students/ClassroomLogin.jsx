@@ -13,11 +13,9 @@ class ClassroomLogin extends Component {
 
   render() {
     return (
-      <div>
-      </div>
+      <div />
     );
   }
 }
 
 export default ClassroomLogin;
-

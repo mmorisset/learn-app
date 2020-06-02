@@ -8,7 +8,7 @@ import './stylesheets/index.scss';
 
 import App from './components/App';
 
-import theme from './theme';
+import theme from './styles/theme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

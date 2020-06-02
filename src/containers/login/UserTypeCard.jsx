@@ -12,11 +12,12 @@ const StyledCard = styled(Card)`
 
 class UserTypeCard extends Component {
   render() {
+    const { linkId, linkTo, linkLabel } = this.props;
     return (
       <StyledCard>
         <Card.Img variant="top" src="http://fakeimg.us-east-1.elasticbeanstalk.com/100x100" />
         <Card.Body className="text-center">
-          <Link id={this.props.linkId} className="btn btn-outline-primary" to={this.props.linkTo}>{this.props.linkLabel}</Link>
+          <Link id={linkId} className="btn btn-outline-primary" to={linkTo}>{linkLabel}</Link>
         </Card.Body>
       </StyledCard>
     );

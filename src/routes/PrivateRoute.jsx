@@ -1,12 +1,24 @@
-import React, { Fragment } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
+class PrivateRoute extends Component {
+  render() {
+    const { children, location } = this.props;
 
-
-const PrivateRoute = (props) => (
-  <Fragment>
-      { localStorage.getItem('teacher') ? props.children : <Redirect to={{ pathname: 'login', state: { from: props.location } }} /> }
-  </Fragment>
-)
+    return (
+      <>
+        {
+          localStorage.getItem('teacher')
+            ? children
+            : (
+              <Redirect
+                to={{ pathname: 'login', state: { from: location } }}
+              />
+            )
+        }
+      </>
+    );
+  }
+}
 
 export default PrivateRoute;

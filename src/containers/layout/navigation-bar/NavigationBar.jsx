@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import NavbarLoggedTeacher from './NavbarLoggedTeacher';
 import NavBarUnloggedActions from './NavBarUnloggedActions';
-import NavBarloggedTeacher from './NavBarloggedTeacher';
 
 class NavigationBar extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    const loggedTeacher = this.props.loggedTeacher;
+    const { loggedTeacher, onLoggedTeacherChange, onTokenChange } = this.props;
     let rightNavContent;
     if (loggedTeacher) {
-      rightNavContent = <NavBarloggedTeacher
-        loggedTeacher = { loggedTeacher }
-        onLoggedTeacherChange = { this.props.onLoggedTeacherChange }
-        onTokenChange = { this.props.onTokenChange }/>;
+      rightNavContent = (
+        <NavbarLoggedTeacher
+          loggedTeacher={loggedTeacher}
+          onLoggedTeacherChange={onLoggedTeacherChange}
+          onTokenChange={onTokenChange}
+        />
+      );
     } else {
-      rightNavContent = <NavBarUnloggedActions/>;
+      rightNavContent = <NavBarUnloggedActions />;
     }
     return (
       <Navbar bg="light" expand="sm">

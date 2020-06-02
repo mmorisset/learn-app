@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-import { Row, Col, Image, Button, Table, InputGroup, FormControl, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {
+  Image,
+  Button,
+  Table,
+  InputGroup,
+  FormControl,
+  OverlayTrigger,
+  Tooltip,
+} from 'react-bootstrap';
 import styled from 'styled-components';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
 import * as classroomsService from 'services/classrooms';
 import * as studentsService from 'services/students';
 import * as levelsService from 'services/levels';
 
-import { ClassroomCard, AddClassroomCard } from 'components/teachers/ClassroomIndexCard';
-import AddStudentsModal from 'components/teachers/AddStudentsModal';
-import DeleteStudentConfirmationModal from 'components/teachers/DeleteStudentConfirmationModal';
+import AddStudentsModal from './AddStudentsModal';
+import DeleteStudentConfirmationModal from './DeleteStudentConfirmationModal';
 
 
 const ClassroomAvatar = styled(Image)`
@@ -60,30 +67,29 @@ const StyledTable = styled(Table)`
     .absorbing-column {
       width: 50%;
     }
-`
+`;
 
 class ClassroomShow extends Component {
-
   constructor(props) {
     super(props);
-
-    this.classroomId = this.props.match.params.id;
+    const { match: { params: { id } } } = this.props;
+    this.classroomId = id;
     this.state = {
       classroom: {
         name: '',
         code: '',
-        avatarUrl: ''
+        avatarUrl: '',
       },
       students: [],
       levels: [],
       addStudentsModal: {
-        show: false
+        show: false,
       },
       classroomCodeCopied: false,
       studentToDeleteId: null,
       studentToDeleteFullName: '',
       deleteStudentConfirmationModal: {
-        show: false
+        show: false,
       },
     };
 
@@ -93,7 +99,8 @@ class ClassroomShow extends Component {
     this.handleClassroomCodeCopyButtonClick = this.handleClassroomCodeCopyButtonClick.bind(this);
     this.handleDeleteStudentButtonClick = this.handleDeleteStudentButtonClick.bind(this);
     this.handleStudentDelete = this.handleStudentDelete.bind(this);
-    this.handleDeleteStudentConfirmationModalClose = this.handleDeleteStudentConfirmationModalClose.bind(this);
+    this.handleDeleteStudentConfirmationModalClose = this.handleDeleteStudentConfirmationModalClose
+      .bind(this);
   }
 
   componentDidMount() {
@@ -103,38 +110,38 @@ class ClassroomShow extends Component {
   }
 
   retrieveClassroom() {
-    classroomsService.get(this.classroomId).then(classroom => {
+    classroomsService.get(this.classroomId).then((classroom) => {
       this.setState({
-        classroom: classroom,
+        classroom,
       });
-    })
+    });
   }
 
   retrieveStudents() {
-    studentsService.index(this.classroomId).then(students => {
+    studentsService.index(this.classroomId).then((students) => {
       this.setState({
-        students: students,
+        students,
       });
-    })
+    });
   }
 
   retrieveLevels() {
-    levelsService.index().then(levels => {
+    levelsService.index().then((levels) => {
       this.setState({
-        levels: levels,
+        levels,
       });
-    })
+    });
   }
 
   handleAddStudentsModalClose() {
     this.setState({
       addStudentsModal: {
-        show: false
-      }
-    })
+        show: false,
+      },
+    });
   }
 
-  handlestudentsCreate(students) {
+  handlestudentsCreate() {
     this.retrieveStudents();
     this.handleAddStudentsModalClose();
   }
@@ -142,9 +149,9 @@ class ClassroomShow extends Component {
   handleAddStudentsButtonClick() {
     this.setState({
       addStudentsModal: {
-        show: true
-      }
-    })
+        show: true,
+      },
+    });
   }
 
   handleDeleteStudentButtonClick(e) {
@@ -152,12 +159,12 @@ class ClassroomShow extends Component {
       studentToDeleteId: e.currentTarget.getAttribute('data-student-to-delete-id'),
       studentToDeleteFullName: e.currentTarget.getAttribute('data-student-to-delete-fullname'),
       deleteStudentConfirmationModal: {
-        show: true
-      }
-    })
+        show: true,
+      },
+    });
   }
 
-  handleStudentDelete(student) {
+  handleStudentDelete() {
     this.retrieveStudents();
     this.handleDeleteStudentConfirmationModalClose();
   }
@@ -165,33 +172,44 @@ class ClassroomShow extends Component {
   handleDeleteStudentConfirmationModalClose() {
     this.setState({
       deleteStudentConfirmationModal: {
-        show: false
-      }
-    })
+        show: false,
+      },
+    });
   }
 
   handleClassroomCodeCopyButtonClick() {
     this.setState({
-      classroomCodeCopied: true
+      classroomCodeCopied: true,
     });
-    setTimeout( () =>
+    setTimeout(() => {
       this.setState({
-        classroomCodeCopied: false
-      }), 2000);
+        classroomCodeCopied: false,
+      });
+    }, 2000);
   }
 
   render() {
-    const { classroom, students, levels, addStudentsModal, classroomCodeCopied, studentToDeleteId, studentToDeleteFullName, deleteStudentConfirmationModal} = this.state;
+    const {
+      classroom,
+      students,
+      levels,
+      addStudentsModal,
+      classroomCodeCopied,
+      studentToDeleteId,
+      studentToDeleteFullName,
+      deleteStudentConfirmationModal,
+    } = this.state;
 
-    const studentsElements = students.map((student, index) => {
-      const studentGrades = levels.map((level, index) => {
-        const levelStudentGrades = level.exercises.map((exercise, index) => {
+    const studentsElements = students.map((student) => {
+      const studentGrades = levels.map((level) => {
+        const levelStudentGrades = level.exercises.map((exercise) => {
           let className = 'not-tackled-yet';
-          let exerciseGrade = student.exerciseGrades.filter(exerciseGrade =>
-            exerciseGrade.exerciseId === exercise.id
-          )
-          if (exerciseGrade.length !== 0) {
-            const grade = exerciseGrade[0].grade
+          const exerciseGrades = student
+            .exerciseGrades
+            .filter((exerciseGrade) => exerciseGrade.exerciseId === exercise.id);
+
+          if (exerciseGrades.length !== 0) {
+            const { grade } = exerciseGrades[0];
             if (grade <= 4) {
               className = 'needs-help';
             } else if (grade <= 7) {
@@ -202,24 +220,25 @@ class ClassroomShow extends Component {
           }
           return (
             <OverlayTrigger
-              placement='right'
-              onEnter={ () => { responsiveVoice.speak(exercise.word) }}
-              overlay={
+              placement="right"
+              /* eslint-disable-next-line no-undef */
+              onEnter={() => { responsiveVoice.speak(exercise.word); }}
+              overlay={(
                 <Tooltip id={`exercise-${exercise.id}-tooltip`}>
                   {exercise.word}
                 </Tooltip>
-              }
+              )}
             >
-              <th className={className}></th>
+              <th className={className} aria-label={className} />
             </OverlayTrigger>
           );
-        })
+        });
         return (
           <td>
             {levelStudentGrades}
           </td>
-        )
-      })
+        );
+      });
       return (
         <tr>
           <td id={`student-${student.id}`}>
@@ -233,7 +252,8 @@ class ClassroomShow extends Component {
               data-student-to-delete-fullname={student.fullName}
               className="action-delete-student"
               variant="outline-secondary"
-              onClick={this.handleDeleteStudentButtonClick}>
+              onClick={this.handleDeleteStudentButtonClick}
+            >
               <FaRegTrashAlt />
             </DeleteStudentButton>
           </td>
@@ -241,13 +261,13 @@ class ClassroomShow extends Component {
       );
     });
 
-    const levelsElements = levels.map((level, index) => (
+    const levelsElements = levels.map((level) => (
       <th>{level.name}</th>
     ));
 
-    const classroomCodeCopyButton = classroomCodeCopied ?
-      <Button className="action-copy-classroom-code" variant="success">Copied!</Button> :
-      <Button className="action-copy-classroom-code" variant="outline-secondary">Copy</Button>
+    const classroomCodeCopyButton = classroomCodeCopied
+      ? <Button className="action-copy-classroom-code" variant="success">Copied!</Button>
+      : <Button className="action-copy-classroom-code" variant="outline-secondary">Copy</Button>;
 
     return (
       <div>
@@ -258,13 +278,17 @@ class ClassroomShow extends Component {
         </Button>
 
         <div className="float-right">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label>Classroom code: </label>
           <InputGroup className="mb-3">
-            <CodeFormControl id="classroom-code-input" disabled value={classroom.code}/>
+            <CodeFormControl id="classroom-code-input" disabled value={classroom.code} />
             <InputGroup.Append>
-            <CopyToClipboard onCopy={this.handleClassroomCodeCopyButtonClick} text={classroom.code}>
-              {classroomCodeCopyButton}
-            </CopyToClipboard>
+              <CopyToClipboard
+                onCopy={this.handleClassroomCodeCopyButtonClick}
+                text={classroom.code}
+              >
+                {classroomCodeCopyButton}
+              </CopyToClipboard>
             </InputGroup.Append>
           </InputGroup>
         </div>
@@ -286,7 +310,8 @@ class ClassroomShow extends Component {
           <Button
             className="action-add-students"
             variant="outline-primary"
-            onClick={this.handleAddStudentsButtonClick}>
+            onClick={this.handleAddStudentsButtonClick}
+          >
             Add students
           </Button>
         </div>
@@ -312,4 +337,3 @@ class ClassroomShow extends Component {
 }
 
 export default ClassroomShow;
-

@@ -1,6 +1,6 @@
 describe('Teacher home', () => {
   beforeEach(function() {
-    cy.login()
+    cy.teacherLogin()
     cy.fixture('teachers/show.json').as('teacher-show')
     cy.server()
     cy.route('GET', '/teachers/profile', '@teacher-show').as('teacher-profile-route')

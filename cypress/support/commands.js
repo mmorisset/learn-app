@@ -25,8 +25,14 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('teacherLogin', () => {
   cy.fixture('teachers/login.json').then((json) => {
     localStorage.setItem('teacher', JSON.stringify(json));
+  })
+})
+
+Cypress.Commands.add('classroomLogin', () => {
+  cy.fixture('classrooms/login.json').then((json) => {
+    localStorage.setItem('classroom', JSON.stringify(json));
   })
 })

@@ -9,7 +9,7 @@ import {
 
 import * as teachersService from 'services/teachers';
 
-class Login extends Component {
+class TeacherLogin extends Component {
   constructor(props) {
     super(props);
 
@@ -48,8 +48,8 @@ class Login extends Component {
 
     teachersService.login(email, password)
       .then(
-        (teacher) => {
-          handleLoggedTeacherChange(teacher.teacher);
+        (json) => {
+          handleLoggedTeacherChange(json.teacher);
           const { from } = state || { from: { pathname: '/teachers/home' } };
           history.push(from);
         },
@@ -105,4 +105,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default TeacherLogin;

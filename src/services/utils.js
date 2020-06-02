@@ -1,5 +1,6 @@
 function logout() {
   localStorage.removeItem('teacher');
+  localStorage.removeItem('classroom');
 }
 
 function handleResponse(response) {

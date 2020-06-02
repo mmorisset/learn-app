@@ -3,15 +3,21 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from 'src/containers/Home';
 import Login from 'src/containers/login/Login';
-import TeachersLogin from 'src/containers/teachers/TeacherLogin';
-import TeachersHome from 'src/containers/teachers/teacher-home/TeacherHome';
-import ClassroomsShow from 'src/containers/teachers/classroom-show/ClassroomShow';
-import ClassroomsLogin from 'src/containers/students/ClassroomLogin';
+import TeacherLogin from 'src/containers/teachers/TeacherLogin';
+import TeacherHome from 'src/containers/teachers/teacher-home/TeacherHome';
+import ClassroomShow from 'src/containers/teachers/classroom-show/ClassroomShow';
+import ClassroomLogin from 'src/containers/students/ClassroomLogin';
+import ClassroomStudentIndex from 'src/containers/students/ClassroomStudentIndex';
 import PrivateRoute from 'src/routes/PrivateRoute';
 
 class Routes extends Component {
   render() {
-    const { loggedTeacher, handleLoggedTeacherChange, handleLoggedStudentChange } = this.props;
+    const {
+      loggedTeacher,
+      handleLoggedTeacherChange,
+      handleLoggedClassroomChange,
+      handleLoggedStudentChange,
+    } = this.props;
     return (
       <Switch>
         <Route exact path="/" component={Home} />
@@ -19,35 +25,48 @@ class Routes extends Component {
         <Route
           path="/teachers/login"
           render={(props) => (
-            <TeachersLogin
+            <TeacherLogin
               {...props}
               handleLoggedTeacherChange={handleLoggedTeacherChange}
             />
           )}
         />
         <Route
+          exact
           path="/classrooms/login"
           render={(props) => (
-            <ClassroomsLogin
+            <ClassroomLogin
               {...props}
-              handleLoggedStudentChange={handleLoggedStudentChange}
+              handleLoggedClassroomChange={handleLoggedClassroomChange}
             />
           )}
         />
-        <PrivateRoute>
+        <PrivateRoute loggedRessource="classroom" unauthorizedRedirectPath="classrooms/login">
+          <Route
+            path="/classrooms/:id/students"
+            render={(props) => (
+              <ClassroomStudentIndex
+                {...props}
+                handleLoggedStudentChange={handleLoggedStudentChange}
+              />
+            )}
+          />
+        </PrivateRoute>
+        <PrivateRoute loggedRessource="teacher" unauthorizedRedirectPath="teachers/login">
           <Route
             path="/teachers/home"
             render={(props) => (
-              <TeachersHome
+              <TeacherHome
                 {...props}
                 loggedTeacher={loggedTeacher}
               />
             )}
           />
           <Route
+            exact
             path="/classrooms/:id"
             render={(props) => (
-              <ClassroomsShow
+              <ClassroomShow
                 {...props}
                 loggedTeacher={loggedTeacher}
               />

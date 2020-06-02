@@ -1,4 +1,4 @@
-describe('Teacher Login', () => {
+describe('Teacher login', () => {
   context('when the teacher successfully login', () => {
     it('redirects to the teacher home page', () => {
       cy.fixture('teachers/login.json').as('teacher-login')

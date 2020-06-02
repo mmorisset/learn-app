@@ -2,7 +2,7 @@ let classroom;
 
 describe('Student deletion', () => {
   beforeEach(function() {
-    cy.login()
+    cy.teacherLogin()
     cy.fixture('classrooms/show.json').as('classroom-get')
     cy.fixture('students/index.json').as('students-index')
     cy.server()

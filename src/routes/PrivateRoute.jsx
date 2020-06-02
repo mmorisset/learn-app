@@ -3,16 +3,21 @@ import { Redirect } from 'react-router-dom';
 
 class PrivateRoute extends Component {
   render() {
-    const { children, location } = this.props;
+    const {
+      children,
+      location,
+      loggedRessource,
+      unauthorizedRedirectPath,
+    } = this.props;
 
     return (
       <>
         {
-          localStorage.getItem('teacher')
+          localStorage.getItem(loggedRessource)
             ? children
             : (
               <Redirect
-                to={{ pathname: 'login', state: { from: location } }}
+                to={{ pathname: unauthorizedRedirectPath, state: { from: location } }}
               />
             )
         }

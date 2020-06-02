@@ -2,7 +2,7 @@ let classroom;
 
 describe('Levels display', () => {
   beforeEach(function() {
-    cy.login()
+    cy.teacherLogin()
     cy.fixture('classrooms/show.json').as('classrooms-show')
     cy.fixture('students/index.json').as('students-index')
     cy.fixture('levels/index.json').as('levels-index')

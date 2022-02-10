@@ -18,7 +18,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-slim-plugin": "^0.3.0",
     "jquery": "^3.5.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "postcss-loader": "^3.0.0",
